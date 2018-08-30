@@ -16,6 +16,12 @@ class anasayfa extends CI_Controller {
 			$this->load->view('anasayfa');
 			$this->load->view('footer');
 	}
+	
+	public function cikis()
+	{
+			$this->session->set_userdata('logged_in',FALSE); 
+			redirect('/giris', 'location');
+	}
 		
 
 	
