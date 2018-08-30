@@ -11,12 +11,12 @@ class theme extends CI_Controller {
 	{
 		$data['kontrol'] = $this->session->userdata('logged_in');
 		
-		$this->load->view('js/js_view',$data);
+		$this->load->view('js/js',$data);
 	}
 	
 	public function css()
 	{
-		$this->load->view('css/css_view');
+		$this->load->view('css/css');
 	}
 
 }
