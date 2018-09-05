@@ -117,3 +117,35 @@ function formAlert(status,message){
 
 
 
+/* Liste İşlemleri Başlangıç */
+function ajaxList(url){
+		jQuery.ajax({
+			type: 'POST',
+			url: '<?php echo site_url(); ?>'+url+'/1',
+			success: function(e){  	
+				$("#ajaxList").html(e); 
+			},});
+		}
+		
+function ajaxListRefresh(url,id){
+		jQuery.ajax({
+			type: 'POST',
+			url: '<?php echo site_url(); ?>'+url,
+			success: function(e){  	
+				$(id).html(e); 
+			},});
+		}
+function ajaxListAppend(limit,url){
+		jQuery.ajax({
+		type: 'POST',
+url: '<?php echo site_url(); ?>'+url+'/'+limit,
+success: function(e){
+	$("#ajaxList").append(e);
+},});
+}
+/* Liste İşlemleri Bitiş */ 
+
+
+
+
+
