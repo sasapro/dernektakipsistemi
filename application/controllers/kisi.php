@@ -19,10 +19,21 @@ class kisi extends CI_Controller {
 	
 	public function liste($s)
 	{
+		
 		$this->load->model('person_model');
 		$data['persons'] = $this->person_model->person_list();
 		$this->load->view('kisi/liste', $data);
 		
+		
+	}
+	
+	public function duzenle($id)
+	{
+		$this->load->view('header');
+		$this->load->model('person_model');
+		$data['person'] = $this->person_model->person_item($id);
+		$this->load->view('kisi/duzenle', $data);
+		$this->load->view('footer');
 	}
 	
 	public function personInsert()

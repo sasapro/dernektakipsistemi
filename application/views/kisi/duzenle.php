@@ -43,27 +43,86 @@ $(function(){
 </script>
 <div class="container-fluid">
 <div class="row titleBar">
-<div class="col-md-8"><h1>Kişiler</h1></div>
-<div class="col-md-4 buttons"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#ekle">Yeni Ekle</button></div>
+<div class="col-md-12"><h1>Kişi Düzenle</h1></div>
 </div>
 <div class="row">
 <div class="col-md-12">
 <div class="card">
   <div class="card-body">
-<table class="table" id="table">
-<thead>
-<tr>
-	<th>Ad</th>
-	<th>Soyad</th>
-	<th></th>
-	<th></th>
-</tr>
-</thead>
-	<tbody id="ajaxList">
-	
-	</tbody>
 
-</table>
+	          <form>
+				 <div class="form-row">
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Uyruk</label>
+                            <input type="text" class="form-control required" id="nationality"   maxlength="2" data-lenght="2" value="<?php print $person->nationality; ?>" >
+                            <div class="invalid-feedback">
+                                Lütfen uyruk giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>TC</label>
+                            <input type="text" class="form-control required" id="tc"  maxlength="11" data-lenght="11" value="<?php print $person->tc; ?>" >
+                            <div class="invalid-feedback">
+                                Lütfen tc giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					
+				</div><!-- row -->
+				<div class="form-row">
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Dernek No</label>
+                            <input type="text" class="form-control required" id="association_number"  maxlength="20" data-lenght="20" value="<?php print $person->association_number; ?>">
+                            <div class="invalid-feedback">
+                                Lütfen dernek no giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Pasaport No</label>
+                            <input type="text" class="form-control" id="passport_number"  maxlength="20" data-lenght="20" value="<?php print $person->passport_number; ?>">
+                        </div>
+                    </div><!-- col -->
+				</div><!-- row -->
+                <div class="form-row">
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Ad</label>
+                            <input type="text" class="form-control required" id="name"  maxlength="50" data-lenght="50" value="<?php print $person->name; ?>">
+                            <div class="invalid-feedback">
+                                Lütfen ad giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Soyad</label>
+                            <input type="text" class="form-control required" id="surname"  maxlength="50" data-lenght="50" value="<?php print $person->surname; ?>">
+                            <div class="invalid-feedback">
+                                Lütfen soyad giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+				</div><!-- row -->
+				<div class="form-row">
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12"  maxlength="50" data-lenght="50" >
+                        <div class="form-group">
+                            <label>Doğum Tarihi</label>
+                            <input type="text" class="form-control required" id="birthdate" value="<?php print $person->birthdate; ?>">
+                            <div class="invalid-feedback">
+                                Lütfen doğum tarihi giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					
+				</div><!-- row -->
+			</form>
+  
 </div><!-- card body -->
 </div><!-- card -->
 
@@ -152,96 +211,8 @@ $(function(){
                             </div>
                         </div>
                     </div><!-- col -->
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Telefon</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="50" data-lenght="50" >
-                            <div class="invalid-feedback">
-                                Lütfen telefon giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
+					
 				</div><!-- row -->
-				<div class="form-row">
-                  
-					<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Adres</label>
-							<textarea class="form-control required" id="adres" maxlength="50" data-lenght="50"  ></textarea>
-                            <div class="invalid-feedback">
-                                Lütfen Adres giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-				</div><!-- row -->
-				<div class="form-row">
-                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12"   >
-                        <div class="form-group">
-                            <label>Ayakkabı Numarası</label>
-                            <input type="text" class="form-control required" id="birthdate" maxlength="2" data-lenght="2">
-                            <div class="invalid-feedback">
-                                Lütfen ayakkabı numarası giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Beden</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="5" data-lenght="5" >
-
-                            <div class="invalid-feedback">
-                                Lütfen beden giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-				</div><!-- row -->
-				
-				<div class="form-row">
-                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12" >
-                        <div class="form-group">
-                            <label>Boy</label>
-                            <input type="text" class="form-control required" id="birthdate" maxlength="3" data-lenght="3" >
-                            <div class="invalid-feedback">
-                                Lütfen boy giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Kilo</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="3" data-lenght="3" >
-                            <div class="invalid-feedback">
-                                Lütfen kilo giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-				</div><!-- row -->
-				
-				
-				<div class="form-row">
-                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12" >
-                        <div class="form-group">
-                            <label>Meslek</label>
-                            <input type="text" class="form-control required" id="birthdate" maxlength="50" data-lenght="50" >
-                            <div class="invalid-feedback">
-                                Lütfen meslek giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Eğitim Seviyesi</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="50" data-lenght="50" >
-                            <div class="invalid-feedback">
-                                Lütfen eğitim seviyesi giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-				</div><!-- row -->
-				
-				
-				
-				
 			</form>
       </div>
       <div class="modal-footer">

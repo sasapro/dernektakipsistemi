@@ -16,6 +16,15 @@ class person_model extends CI_Model {
 		return $veri->result_array();
 	}
 	
+	function person_item($id)
+	{
+		$this->db->select('*');
+		$this->db->from('person');
+		$this->db->where('pid',$id);
+		$veri = $this->db->get();
+		return $veri->row();
+	}
+	
 	function personInsert($values)
 	{
 		$nationality = $this->db->escape_str($values[0]);
