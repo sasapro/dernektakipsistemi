@@ -1,84 +1,8 @@
+<?php foreach($persons AS $person){ ?>
 <tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
+	<td><?php print $person['name']; ?></td>
+	<td><?php print $person['surname']; ?></td>
 	<td></td>
 	<td></td>
 </tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>Deneme</td>
-	<td>Deneme</td>
-	<td></td>
-	<td></td>
-</tr>
+<?php } ?>

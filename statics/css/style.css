@@ -2,15 +2,15 @@
 body {background: #F1F1F1; font-family: 'Roboto', sans-serif;}
 /*body {background: #d2d6de; font-family: 'Roboto', sans-serif;}*/
 a, button, input, p, b, span {font-family: 'Roboto', sans-serif;}
-#main {transition: margin-left .5s;padding: 20px;padding-top: 100px;
-}
-h1.login-title {font-size: 36px; color: #666; text-align:center; margin: 30px auto; font-weight: 300;}
-h1.login-title strong {font-weight: 500;}
-h1.title {font-size: 26px; color: #666; padding: 10px 0px;}
+
+.titleBar {margin-top: 10px; margin-bottom: 10px;}
+.titleBar h1 {float: left; font-size: 26px; color: #666; padding: 10px 0px;}
+.titleBar .buttons {text-align: right;}
+.titleBar .buttons button {margin: 5px 0;}
 .user-login-logo {width: 70px; margin-bottom: auto; margin-top: 0px;margin-left:auto; margin-right:0;}
 /*.user-login-logo {margin: 30px auto; width: 240px; margin-top: 60px;}*/
 .user-login-logo img {width: 100%; max-width: 100%;}
-.card {border-radius: 10px; border: 0; -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.08); box-shadow: 0 1px 15px 1px rgba(69,65,78,.08);}
+.card {border: 0; -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.08); box-shadow: 0 1px 15px 1px rgba(69,65,78,.08);}
 
 input, select {border:1px solid #ddd!important; border-radius: 10px!important; background: #FBFBFB!important; font-family: 'Roboto', sans-serif;}
 .select2-container {width: 100%; max-width: 100%;}
@@ -22,8 +22,8 @@ input, select {border:1px solid #ddd!important; border-radius: 10px!important; b
 .form-group button,.form-group a {width: 100%; border-radius: 10px; background: #0F6BAD; color: #fff!important;}
 .form-group label {color: #999; width: 100%;}
 
-.fixed-top {box-shadow: 0 1px 15px 1px rgba(69,65,78,.08);}
 
+.navbar {box-shadow: 0 1px 15px 1px rgba(69,65,78,.08); background: #fff;}
 .navbar-brand.logo {margin: 0; padding: 0;}
 .navbar-brand.logo img{height: 40px;}
 .mobile-menu-icon {cursor: pointer; color: #0F6BAD; font-size: 24px;}
