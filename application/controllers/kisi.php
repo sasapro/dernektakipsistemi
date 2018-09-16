@@ -27,12 +27,12 @@ class kisi extends CI_Controller {
 		
 	}
 	
-	public function duzenle($id)
+	public function detay($id)
 	{
 		$this->load->view('header');
 		$this->load->model('person_model');
 		$data['person'] = $this->person_model->person_item($id);
-		$this->load->view('kisi/duzenle', $data);
+		$this->load->view('kisi/detay', $data);
 		$this->load->view('footer');
 	}
 	
@@ -46,8 +46,16 @@ class kisi extends CI_Controller {
 		$name = $this->input->post('name',TRUE);
 		$surname = $this->input->post('surname',TRUE);
 		$birthdate = $this->input->post('birthdate',TRUE);
+		$job = $this->input->post('job',TRUE);
+		$education = $this->input->post('education',TRUE);
+		$phone = $this->input->post('phone',TRUE);
+		$address = $this->input->post('address',TRUE);
+		$shoe_size = $this->input->post('shoe_size',TRUE);
+		$body_size = $this->input->post('body_size',TRUE);
+		$height = $this->input->post('height',TRUE);
+		$weight = $this->input->post('weight',TRUE);
 		
-		$values = array($nationality,$tc,$association_number,$passport_number,$name,$surname,$birthdate);
+		$values = array($nationality,$tc,$association_number,$passport_number,$name,$surname,$birthdate,$job,$education,$phone,$address,$shoe_size,$body_size,$height,$weight);
 		$this->load->model('person_model');
 		$sonuc = $this->person_model->personInsert($values);
 		

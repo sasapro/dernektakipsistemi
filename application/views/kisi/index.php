@@ -25,9 +25,17 @@ $(function(){
             var passport_number = document.getElementById("passport_number").value;
             var name = document.getElementById("name").value;
             var surname = document.getElementById("surname").value;
-            var birthdate = document.getElementById("birthdate").value;
+			var birthdate = document.getElementById("birthdate").value;
+            var job = document.getElementById("job").value;
+			var education = document.getElementById("education").value;
+			var phone = document.getElementById("phone").value;
+			var address = document.getElementById("address").value;
+			var shoe_size = document.getElementById("shoe_size").value;
+			var body_size = document.getElementById("body_size").value;
+			var height = document.getElementById("height").value;
+			var weight = document.getElementById("weight").value;
 
-            var dataString = 'nationality='+ nationality + 'tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate;
+            var dataString = 'nationality='+ nationality + 'tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&phone=' + phone + '&address=' + address + '&shoe_size=' + shoe_size + '&body_size=' + body_size + '&height=' + height + '&weight=' + weight;
             jQuery.ajax({
                 type: 'POST',
                 url: '<?php print site_url(); ?>kisi/personInsert',
@@ -154,8 +162,28 @@ $(function(){
                     </div><!-- col -->
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
+                            <label>Mesleği</label>
+                            <input type="text" class="form-control required" id="job"  maxlength="50" data-lenght="50" >
+                            <div class="invalid-feedback">
+                                Lütfen meslek giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+				</div><!-- row -->
+				<div class="form-row">
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12"  maxlength="50" data-lenght="50" >
+                        <div class="form-group">
+                            <label>Eğitim Seviyesi</label>
+                            <input type="text" class="form-control required" id="education">
+                            <div class="invalid-feedback">
+                                Lütfen Eğitim Seviyesi giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
                             <label>Telefon</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="50" data-lenght="50" >
+                            <input type="text" class="form-control required" id="phone"  maxlength="50" data-lenght="50" >
                             <div class="invalid-feedback">
                                 Lütfen telefon giriniz.
                             </div>
@@ -167,7 +195,7 @@ $(function(){
 					<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Adres</label>
-							<textarea class="form-control required" id="adres" maxlength="50" data-lenght="50"  ></textarea>
+							<textarea class="form-control required" id="address" maxlength="50" data-lenght="50"  ></textarea>
                             <div class="invalid-feedback">
                                 Lütfen Adres giriniz.
                             </div>
@@ -178,7 +206,7 @@ $(function(){
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12"   >
                         <div class="form-group">
                             <label>Ayakkabı Numarası</label>
-                            <input type="text" class="form-control required" id="birthdate" maxlength="2" data-lenght="2">
+                            <input type="text" class="form-control required" id="shoe_size" maxlength="2" data-lenght="2">
                             <div class="invalid-feedback">
                                 Lütfen ayakkabı numarası giriniz.
                             </div>
@@ -187,7 +215,7 @@ $(function(){
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Beden</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="5" data-lenght="5" >
+                            <input type="text" class="form-control required" id="body_size"  maxlength="5" data-lenght="5" >
 
                             <div class="invalid-feedback">
                                 Lütfen beden giriniz.
@@ -200,7 +228,7 @@ $(function(){
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12" >
                         <div class="form-group">
                             <label>Boy</label>
-                            <input type="text" class="form-control required" id="birthdate" maxlength="3" data-lenght="3" >
+                            <input type="text" class="form-control required" id="height" maxlength="3" data-lenght="3" >
                             <div class="invalid-feedback">
                                 Lütfen boy giriniz.
                             </div>
@@ -209,7 +237,7 @@ $(function(){
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Kilo</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="3" data-lenght="3" >
+                            <input type="text" class="form-control required" id="weight"  maxlength="3" data-lenght="3" >
                             <div class="invalid-feedback">
                                 Lütfen kilo giriniz.
                             </div>
@@ -218,26 +246,7 @@ $(function(){
 				</div><!-- row -->
 				
 				
-				<div class="form-row">
-                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12" >
-                        <div class="form-group">
-                            <label>Meslek</label>
-                            <input type="text" class="form-control required" id="birthdate" maxlength="50" data-lenght="50" >
-                            <div class="invalid-feedback">
-                                Lütfen meslek giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Eğitim Seviyesi</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="50" data-lenght="50" >
-                            <div class="invalid-feedback">
-                                Lütfen eğitim seviyesi giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-				</div><!-- row -->
+				
 				
 				
 				

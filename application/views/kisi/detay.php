@@ -50,84 +50,74 @@ $(function(){
 <div class="card">
   <div class="card-body">
 
-	          <form>
-				 <div class="form-row">
+				 <div class="row">
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
                             <label>Uyruk</label>
-                            <input type="text" class="form-control required" id="nationality"   maxlength="2" data-lenght="2" value="<?php print $person->nationality; ?>" >
-                            <div class="invalid-feedback">
-                                Lütfen uyruk giriniz.
-                            </div>
-                        </div>
+                            <span><?php print $person->nationality; ?></span>
                     </div><!-- col -->
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
                             <label>TC</label>
-                            <input type="text" class="form-control required" id="tc"  maxlength="11" data-lenght="11" value="<?php print $person->tc; ?>" >
-                            <div class="invalid-feedback">
-                                Lütfen tc giriniz.
-                            </div>
-                        </div>
+                            <span><?php print $person->tc; ?></span>
                     </div><!-- col -->
 					
 				</div><!-- row -->
-				<div class="form-row">
+				<div class="row">
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
                             <label>Dernek No</label>
-                            <input type="text" class="form-control required" id="association_number"  maxlength="20" data-lenght="20" value="<?php print $person->association_number; ?>">
-                            <div class="invalid-feedback">
-                                Lütfen dernek no giriniz.
-                            </div>
-                        </div>
+                            <span><?php print $person->association_number; ?></span>
                     </div><!-- col -->
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
                             <label>Pasaport No</label>
-                            <input type="text" class="form-control" id="passport_number"  maxlength="20" data-lenght="20" value="<?php print $person->passport_number; ?>">
-                        </div>
+                            <span><?php print $person->passport_number; ?></span>
                     </div><!-- col -->
 				</div><!-- row -->
-                <div class="form-row">
+                <div class="row">
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
                             <label>Ad</label>
-                            <input type="text" class="form-control required" id="name"  maxlength="50" data-lenght="50" value="<?php print $person->name; ?>">
-                            <div class="invalid-feedback">
-                                Lütfen ad giriniz.
-                            </div>
-                        </div>
+                            <span><?php print $person->name; ?></span>
                     </div><!-- col -->
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
                             <label>Soyad</label>
-                            <input type="text" class="form-control required" id="surname"  maxlength="50" data-lenght="50" value="<?php print $person->surname; ?>">
-                            <div class="invalid-feedback">
-                                Lütfen soyad giriniz.
-                            </div>
-                        </div>
+                            <span><?php print $person->surname; ?></span>
                     </div><!-- col -->
 				</div><!-- row -->
-				<div class="form-row">
+				<div class="row">
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12"  maxlength="50" data-lenght="50" >
-                        <div class="form-group">
                             <label>Doğum Tarihi</label>
-                            <input type="text" class="form-control required" id="birthdate" value="<?php print $person->birthdate; ?>">
-                            <div class="invalid-feedback">
-                                Lütfen doğum tarihi giriniz.
-                            </div>
-                        </div>
+                            <span><?php print $person->birthdate; ?></span>
                     </div><!-- col -->
-					
 				</div><!-- row -->
-			</form>
   
 </div><!-- card body -->
 </div><!-- card -->
 
 </div><!-- col -->
 </div><!-- row -->
+
+<div class="row">
+<div class="col-md-12">
+<div class="card">
+  <div class="card-body">
+		
+	<table class="table">
+		<thead>
+			<tr>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+  
+  </div><!-- card body -->
+</div><!-- card -->
+
+</div><!-- col -->
+</div><!-- row -->
+
 
 </div><!-- container -->
 
@@ -222,4 +212,8 @@ $(function(){
     </div>
   </div>
 </div>
+
+
+
+
 
