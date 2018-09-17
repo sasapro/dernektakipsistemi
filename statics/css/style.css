@@ -3,6 +3,10 @@ body {background: #F1F1F1; font-family: 'Roboto', sans-serif;}
 /*body {background: #d2d6de; font-family: 'Roboto', sans-serif;}*/
 a, button, input, p, b, span {font-family: 'Roboto', sans-serif;}
 
+.row {margin: 20px 0;}
+h1, h2, h3, h4, h5, h6 {color: #333;}
+	a {cursor: pointer;}
+
 .titleBar {margin-top: 10px; margin-bottom: 10px;}
 .titleBar h1 {float: left; font-size: 26px; color: #666; padding: 10px 0px;}
 .titleBar .buttons {text-align: right;}
@@ -10,7 +14,15 @@ a, button, input, p, b, span {font-family: 'Roboto', sans-serif;}
 .user-login-logo {width: 70px; margin-bottom: auto; margin-top: 0px;margin-left:auto; margin-right:0;}
 /*.user-login-logo {margin: 30px auto; width: 240px; margin-top: 60px;}*/
 .user-login-logo img {width: 100%; max-width: 100%;}
+
+.subtitle {float: left;}
+.subHeaderButton {float: right;}
+.subHeaderButton a {color: #333;}
+
 .card {border: 0; -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.08); box-shadow: 0 1px 15px 1px rgba(69,65,78,.08);}
+
+.card.infornation label {float: left; width: 100%; font-size: 13px; color: #999; margin: 5px 0 0 0;}
+.card.infornation span {float: left; width: 100%; font-size: 16px; color: #333;}
 
 input, select {border:1px solid #ddd!important; border-radius: 10px!important; background: #FBFBFB!important; font-family: 'Roboto', sans-serif;}
 .select2-container {width: 100%; max-width: 100%;}

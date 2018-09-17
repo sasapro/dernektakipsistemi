@@ -35,7 +35,7 @@ $(function(){
 			var height = document.getElementById("height").value;
 			var weight = document.getElementById("weight").value;
 
-            var dataString = 'nationality='+ nationality + 'tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&phone=' + phone + '&address=' + address + '&shoe_size=' + shoe_size + '&body_size=' + body_size + '&height=' + height + '&weight=' + weight;
+            var dataString = 'nationality='+ nationality + '&tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&phone=' + phone + '&address=' + address + '&shoe_size=' + shoe_size + '&body_size=' + body_size + '&height=' + height + '&weight=' + weight;
             jQuery.ajax({
                 type: 'POST',
                 url: '<?php print site_url(); ?>kisi/personInsert',
