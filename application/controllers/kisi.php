@@ -113,11 +113,11 @@ class kisi extends CI_Controller {
 	public function personPhoneUpdate()
 	{
 		if(!$_POST){ exit("Bu sayfaya ulasim yetkiniz bulunmuyor!"); }
-		$pid = $this->input->post('pid',TRUE);
+		$id = $this->input->post('id',TRUE);
 		$name = $this->input->post('name',TRUE);
 		$phone = $this->input->post('phone',TRUE);
 		
-		$values = array($pid,$name,$phone);
+		$values = array($id,$name,$phone);
 		$this->load->model('person_model');
 		$sonuc = $this->person_model->personPhoneUpdate($values);
 		
@@ -144,6 +144,23 @@ class kisi extends CI_Controller {
 			echo 0;
 	}
 	
+	public function personAddressUpdate()
+	{
+		if(!$_POST){ exit("Bu sayfaya ulasim yetkiniz bulunmuyor!"); }
+		$id = $this->input->post('id',TRUE);
+		$name = $this->input->post('name',TRUE);
+		$address = $this->input->post('address',TRUE);
+		
+		$values = array($id,$name,$address);
+		$this->load->model('person_model');
+		$sonuc = $this->person_model->personAddressUpdate($values);
+		
+		if($sonuc)
+			echo 1;
+		else
+			echo 0;
+	}
+	
 	public function personMeasuresInsert()
 	{
 		if(!$_POST){ exit("Bu sayfaya ulasim yetkiniz bulunmuyor!"); }
@@ -162,6 +179,145 @@ class kisi extends CI_Controller {
 			echo 1;
 		else
 			echo 0;
+	}
+	
+	public function personMeasuresUpdate()
+	{
+		if(!$_POST){ exit("Bu sayfaya ulasim yetkiniz bulunmuyor!"); }
+		$id = $this->input->post('id',TRUE);
+		$shoe_size = $this->input->post('shoe_size',TRUE);
+		$body_size = $this->input->post('body_size',TRUE);
+		$height = $this->input->post('height',TRUE);
+		$weight = $this->input->post('weight',TRUE);
+		
+		
+		$values = array($id,$shoe_size,$body_size,$height,$weight);
+		$this->load->model('person_model');
+		$sonuc = $this->person_model->personMeasuresUpdate($values);
+		
+		if($sonuc)
+			echo 1;
+		else
+			echo 0;
+	}
+	
+	
+	function persondetailPhoneUpdate($id)
+	{
+		$this->load->model('person_model');
+		$values = $this->person_model->person_phone_item($id);
+		
+		print '<form>
+				 <div class="form-row">
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>İletişim Adı</label>
+							<input type="text" style="display: none;" id="updatePhoneId"  value="'.$values->id.'">
+                            <input type="text" class="form-control required" id="updatePhoneName"  value="'.$values->name.'" maxlength="30" data-lenght="30" >
+                            <div class="invalid-feedback">
+                                Lütfen iletişim adı giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="text" class="form-control required" id="updatePhoneValue" value="'.$values->phone.'"  maxlength="10" data-lenght="10" >
+                            <div class="invalid-feedback">
+                                Lütfen telefon giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					
+				</div><!-- row -->
+			</form>';
+	}
+	
+	
+	function persondetailAddressUpdate($id)
+	{
+		$this->load->model('person_model');
+		$values = $this->person_model->person_address_item($id);
+		
+		print '<form>
+				 <div class="form-row">
+					<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>İletişim Adı</label>
+							<input type="text" style="display: none;" id="updateAddressId" value="'.$values->id.'"  >
+                            <input type="text" class="form-control required" id="updateAddressName" value="'.$values->name.'"  maxlength="30" data-lenght="30" >
+                            <div class="invalid-feedback">
+                                Lütfen iletişim adı giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					</div><!-- row -->
+					<div class="form-row">
+					<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Adres</label>
+                            <textarea class="form-control required" id="updateAddressValue">'.$values->address.'</textarea>
+                            <div class="invalid-feedback">
+                                Lütfen adres giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					
+				</div><!-- row -->
+			</form>';
+	}
+	
+	function persondetailMeasuresUpdate($id)
+	{
+		$this->load->model('person_model');
+		$values = $this->person_model->person_measures_item($id);
+		
+	print '<form>
+				 <div class="form-row">
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Ayakkabı Numarası</label>
+							<input type="text" style="display: none;" id="updateMeasuresId" value="'.$values->id.'"  maxlength="30" data-lenght="30" >
+                            <input type="text" class="form-control required" id="updateShoeSizeValue" value="'.$values->shoe_size.'"  maxlength="30" data-lenght="30" >
+                            <div class="invalid-feedback">
+                                Lütfen ayakkabı numarası giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Beden</label>
+                            <input type="text" class="form-control required" id="updateBodySizeValue"  value="'.$values->body_size.'"  maxlength="10" data-lenght="10" >
+                            <div class="invalid-feedback">
+                                Lütfen beden giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					
+				</div><!-- row -->
+				<div class="form-row">
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Boy</label>
+                            <input type="text" class="form-control required" id="updateHeightValue"   value="'.$values->height.'"  maxlength="30" data-lenght="30" >
+                            <div class="invalid-feedback">
+                                Lütfen boy giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Ağırlık</label>
+                            <input type="text" class="form-control required" id="updateWeightValue"  value="'.$values->weight.'"  maxlength="10" data-lenght="10" >
+                            <div class="invalid-feedback">
+                                Lütfen ağırlık giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+					
+				</div><!-- row -->
+			</form>';
+			
 	}
 		
 

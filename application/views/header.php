@@ -25,13 +25,9 @@
         <a class="nav-link" href="#">ANASAYFA <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link" href="<?php echo site_url(); ?>kisi" >
           KİŞİLER
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Listele</a>
-          <a class="dropdown-item" href="#">Kişi Ekle</a>
-        </div>
       </li>
     </ul>
   </div>

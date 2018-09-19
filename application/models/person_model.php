@@ -55,6 +55,33 @@ class person_model extends CI_Model {
 		return $veri->row();
 	}
 	
+	function person_phone_item($id)
+	{
+		$this->db->select('*');
+		$this->db->from('person_phone');
+		$this->db->where('id',$id);
+		$veri = $this->db->get();
+		return $veri->row();
+	}
+	
+	function person_address_item($id)
+	{
+		$this->db->select('*');
+		$this->db->from('person_address');
+		$this->db->where('id',$id);
+		$veri = $this->db->get();
+		return $veri->row();
+	}
+	
+	function person_measures_item($id)
+	{
+		$this->db->select('*');
+		$this->db->from('person_measures');
+		$this->db->where('id',$id);
+		$veri = $this->db->get();
+		return $veri->row();
+	}
+	
 	function personInsert($values)
 	{
 		$nationality = $this->db->escape_str($values[0]);
@@ -216,7 +243,7 @@ class person_model extends CI_Model {
 	
 	function personPhoneUpdate($values)
 	{
-		$pid = $this->db->escape_str($values[0]);
+		$id = $this->db->escape_str($values[0]);
 		$name = $this->db->escape_str($values[1]);
 		$phone = $this->db->escape_str($values[2]);
 		
@@ -225,10 +252,9 @@ class person_model extends CI_Model {
 		
 		$data = array(
 						'name'  => $name,
-						'phone'    => $phone,
-						'insert_date' => $now
+						'phone'    => $phone
 					 );
-		$this->db->where('pid',$pid);
+		$this->db->where('id',$id);
 		$update = $this->db->update('person_phone',$data);
 		
 		if($update):
@@ -267,7 +293,7 @@ class person_model extends CI_Model {
 	
 	function personAddressUpdate($values)
 	{
-		$pid = $this->db->escape_str($values[0]);
+		$id = $this->db->escape_str($values[0]);
 		$name = $this->db->escape_str($values[1]);
 		$address = $this->db->escape_str($values[2]);
 		
@@ -276,10 +302,9 @@ class person_model extends CI_Model {
 		
 		$data = array(
 						'name'  => $name,
-						'address'    => $address,
-						'insert_date' => $now
+						'address'    => $address
 					 );
-		$this->db->where('pid',$pid);
+		$this->db->where('id',$id);
 		$update = $this->db->update('person_address',$data);
 		
 		if($update):
@@ -318,6 +343,35 @@ class person_model extends CI_Model {
 			return FALSE;
 		endif;
 	}
+	
+	
+	function personMeasuresUpdate($values)
+	{
+		$id = $this->db->escape_str($values[0]);
+		$shoe_size = $this->db->escape_str($values[1]);
+		$body_size = $this->db->escape_str($values[2]);
+		$height = $this->db->escape_str($values[3]);
+		$weight = $this->db->escape_str($values[4]);
+		
+		
+		$data = array(
+						'shoe_size'  => $shoe_size,
+						'body_size'    => $body_size,
+						'height'    => $height,
+						'weight'    => $weight
+					 );
+		
+		$this->db->where('id',$id);		
+		$update = $this->db->update('person_measures',$data);
+		
+		if($update):
+			return TRUE;
+		else:
+			return FALSE;
+		endif;
+	}
+	
+	
 	
 	
 }

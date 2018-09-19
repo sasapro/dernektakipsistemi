@@ -36,7 +36,10 @@ $(function(){
                 url: '<?php print site_url(); ?>kisi/personUpdate',
                 data: dataString,
                 success: function(e){
-                    alert(e);
+					if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
                 },
             });
 
@@ -56,7 +59,10 @@ $(function(){
                 url: '<?php print site_url(); ?>kisi/personPhoneInsert',
                 data: dataString,
                 success: function(e){
-                    alert(e);
+                    if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
                 },
             });
 	}
@@ -73,7 +79,10 @@ $(function(){
                 url: '<?php print site_url(); ?>kisi/personAddressInsert',
                 data: dataString,
                 success: function(e){
-                    alert(e);
+                    if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
                 },
             });
 	}
@@ -92,7 +101,109 @@ $(function(){
                 url: '<?php print site_url(); ?>kisi/personMeasuresInsert',
                 data: dataString,
                 success: function(e){
-                    alert(e);
+                    if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
+                },
+            });
+	}
+	
+	function phoneUpdateFormPage(id)
+	{
+		jQuery.ajax({
+                type: 'POST',
+                url: '<?php print site_url(); ?>kisi/persondetailPhoneUpdate/'+id,
+                success: function(e){
+                    $("#phoneUpdateForm").html(e);
+                },
+            });
+	}
+	
+	function formPhoneUpdateSend(){
+		
+		 var id = document.getElementById("updatePhoneId").value;
+		 var name = document.getElementById("updatePhoneName").value;
+         var phone = document.getElementById("updatePhoneValue").value;
+		 
+		 var dataString = 'id=' + id + '&name='+ name + '&phone=' + phone;
+			
+            jQuery.ajax({
+                type: 'POST',
+                url: '<?php print site_url(); ?>kisi/personPhoneUpdate',
+                data: dataString,
+                success: function(e){
+                    if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
+                },
+            });
+	}
+	
+	
+	function addressUpdateFormPage(id)
+	{
+		jQuery.ajax({
+                type: 'POST',
+                url: '<?php print site_url(); ?>kisi/persondetailAddressUpdate/'+id,
+                success: function(e){
+                    $("#addressUpdateForm").html(e);
+                }
+            });
+	}
+	
+	function formAddressUpdateSend(){
+		
+		 var id = document.getElementById("updateAddressId").value;
+		 var name = document.getElementById("updateAddressName").value;
+         var address = document.getElementById("updateAddressValue").value;
+		 
+		 var dataString = 'id=' + id + '&name='+ name + '&address=' + address;
+			
+            jQuery.ajax({
+                type: 'POST',
+                url: '<?php print site_url(); ?>kisi/personAddressUpdate',
+                data: dataString,
+                success: function(e){
+                    if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
+                },
+            });
+	}
+	
+	function measuresUpdateFormPage(id)
+	{
+		jQuery.ajax({
+                type: 'POST',
+                url: '<?php print site_url(); ?>kisi/persondetailMeasuresUpdate/'+id,
+                success: function(e){
+                    $("#measuresUpdateForm").html(e);
+                }
+            });
+	}
+	
+	function formMeasuresUpdateSend(){
+		
+		 var id = document.getElementById("updateMeasuresId").value;
+		 var shoe_size = document.getElementById("updateShoeSizeValue").value;
+         var body_size = document.getElementById("updateBodySizeValue").value;
+		 var height = document.getElementById("updateHeightValue").value;
+		 var weight = document.getElementById("updateWeightValue").value;
+		 
+		 var dataString = 'id=' + id + '&shoe_size='+ shoe_size + '&body_size=' + body_size + '&height=' + height + '&weight=' + weight;
+			
+            jQuery.ajax({
+                type: 'POST',
+                url: '<?php print site_url(); ?>kisi/personMeasuresUpdate',
+                data: dataString,
+                success: function(e){
+                    if(e)
+						location.reload(); 
+					else
+						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
                 },
             });
 	}
@@ -188,7 +299,7 @@ $(function(){
 			<tr>
 				<td><?php print $personPhone['name']; ?></td>
 				<td><?php print $personPhone['phone']; ?></td>
-				<td  width="110"><a href=""><i class="fas fa-edit"></i> Düzenle</a></td>
+				<td  width="110"><a onclick="phoneUpdateFormPage(<?php print $personPhone['id']; ?>)" data-toggle="modal" data-target="#phoneUpdate" ><i class="fas fa-edit"></i> Düzenle</a></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
@@ -222,7 +333,7 @@ $(function(){
 			<tr>
 				<td><?php print $personAddress['name']; ?></td>
 				<td><?php print $personAddress['address']; ?></td>
-				<td  width="110"><a href=""><i class="fas fa-edit"></i> Düzenle</a></td>
+				<td  width="110"><a onclick="addressUpdateFormPage(<?php print $personAddress['id']; ?>)" data-toggle="modal" data-target="#addressUpdate"><i class="fas fa-edit"></i> Düzenle</a></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
@@ -261,7 +372,7 @@ $(function(){
 				<td><?php print $personMeasures['body_size']; ?></td>
 				<td><?php print $personMeasures['height']; ?></td>
 				<td><?php print $personMeasures['weight']; ?></td>
-				<td width="110"><a href=""><i class="fas fa-edit"></i> Düzenle</a></td>
+				<td width="110"><a onclick="measuresUpdateFormPage(<?php print $personMeasures['id']; ?>)" data-toggle="modal" data-target="#measuresUpdate"><i class="fas fa-edit"></i> Düzenle</a></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
@@ -440,39 +551,17 @@ $(function(){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Telefon Düzenle</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Telefon Güncelle</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-          <form>
-				 <div class="form-row">
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>İletişim Adı</label>
-                            <input type="text" class="form-control required" id="updatePhoneName"  maxlength="30" data-lenght="30" >
-                            <div class="invalid-feedback">
-                                Lütfen iletişim adı giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                        <div class="form-group">
-                            <label>Telefon</label>
-                            <input type="text" class="form-control required" id="updatePhoneValue"  maxlength="10" data-lenght="10" >
-                            <div class="invalid-feedback">
-                                Lütfen telefon giriniz.
-                            </div>
-                        </div>
-                    </div><!-- col -->
-					
-				</div><!-- row -->
-			</form>
+      <div class="modal-body" id="phoneUpdateForm">
+          
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-        <button type="button" class="btn btn-primary" onclick="formPhoneUpdateSend();">Ekle</button>
+        <button type="button" class="btn btn-primary" onclick="formPhoneUpdateSend();">Güncelle</button>
       </div>
     </div>
   </div>
@@ -525,6 +614,29 @@ $(function(){
   </div>
 </div>
 <!-- Modal Adres Ekle -->
+
+<!-- Modal Adres Güncelle -->
+<div class="modal fade" id="addressUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adres Güncelle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="addressUpdateForm">
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" onclick="formAddressUpdateSend();">Güncelle</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Adres Güncelle -->
+
 
 
 
@@ -592,6 +704,33 @@ $(function(){
   </div>
 </div>
 <!-- Modal Ölçü Ekle -->
+
+
+<!-- Modal Ölçü Güncelle -->
+<div class="modal fade" id="measuresUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ölçü Güncelle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="measuresUpdateForm">
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" onclick="formMeasuresUpdateSend();">Güncelle</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Ölçü Güncelle -->
+
+
+
+
 
 
 
