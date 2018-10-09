@@ -29,9 +29,9 @@ input, select {border:1px solid #ddd!important; border-radius: 10px!important; b
 .select2-container--default .select2-selection--single  {height: 37px; padding: 5px; color: #ccc; border:1px solid #ddd!important; border-radius: 10px!important; background: #FBFBFB!important; font-family: 'Roboto', sans-serif;}
 .select2-container--default .select2-selection--single .select2-selection__rendered {color: #999;}
 .select2-selection__arrow {padding: 5px;}
-.input-group input {border-radius: 0 0 10px 0!important;}
-.input-group .input-group-text {border-radius: 10px 0 0 0; background: #FBFBFB; }
-.form-group button,.form-group a {width: 100%; border-radius: 10px; background: #0F6BAD; color: #fff!important;}
+.input-group input {border-radius: 0 5px 5px 0!important;}
+.input-group .input-group-text {border-radius: 5px 0 0 5px; background: #FBFBFB; }
+.form-group button,.form-group a {width: 100%; border-radius: 5px; background: #0F6BAD; color: #fff!important;}
 .form-group label {color: #999; width: 100%;}
 
 

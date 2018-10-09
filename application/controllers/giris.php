@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class giris extends CI_Controller {
+class Giris extends CI_Controller {
 
 
 	 public function __construct()
@@ -42,10 +42,12 @@ class giris extends CI_Controller {
 		}else
 		{
 			$uid = $usersession->uid;
+            $rid = $usersession->rid;
 			$session_data = array(
 				'uid'  => $uid,  
 				'username'     => $username,  
-				'password'     => $md5password, 
+				'password'     => $md5password,
+				'rid' => $rid,
 				'logged_in' => TRUE  
 			);
 			$this->session->set_userdata($session_data); 
@@ -54,7 +56,7 @@ class giris extends CI_Controller {
 			$values = array($uid, $date, $ip);
 			$this->log_model->session_insert($values);
 			
-			echo 1;
+			echo $rid;
 		}// if
 	}
 	

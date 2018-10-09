@@ -1,5 +1,5 @@
 <?php
-$ajaxUrl = "kisi/liste/1";
+$ajaxUrl = "kisi/liste/".$pgid."/1";
 ?>
 <script type="text/javascript">
 $(function(){
@@ -8,10 +8,17 @@ $(function(){
 		var count = 2;
           $(window).scroll(function() {
 			if($(window).scrollTop() >= ($(document).height() - $(window).height())-10){
-			ajaxListAppend(count,'kisi/liste');
+			ajaxListAppend(count,'kisi/liste/<?php print $pgid; ?>');
                      count++;
                   }
-          }); 	
+          });
+
+    $('#birthdate').datepicker({
+        format: 'yyyy-mm-dd',
+        firstDay: 1
+    });
+
+
    });
    
    
@@ -34,25 +41,37 @@ $(function(){
 			var body_size = document.getElementById("body_size").value;
 			var height = document.getElementById("height").value;
 			var weight = document.getElementById("weight").value;
+            var pgid = document.getElementById("pgid").value;
 
-            var dataString = 'nationality='+ nationality + '&tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&phone=' + phone + '&address=' + address + '&shoe_size=' + shoe_size + '&body_size=' + body_size + '&height=' + height + '&weight=' + weight;
+            var dataString = 'nationality='+ nationality + '&tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&phone=' + phone + '&address=' + address + '&shoe_size=' + shoe_size + '&body_size=' + body_size + '&height=' + height + '&weight=' + weight + '&pgid=' + pgid;
             jQuery.ajax({
                 type: 'POST',
                 url: '<?php print site_url(); ?>kisi/personInsert',
                 data: dataString,
                 success: function(e){
-                    alert(e);
+                    if(e)
+                        location.reload();
+                    else
+                        alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
                 },
             });
 
         }
 
     }
+
+function sil()
+{
+    var onay = window.confirm("UYARI! Bu işlem kesinlikle geri alınamaz. Silmek istediğinize emin misiniz?");
+    if(onay)
+        ajaxListDelete('kisi/sil','<?php echo $ajaxUrl; ?>');
+}
+
 </script>
 <div class="container-fluid">
 <div class="row titleBar">
-<div class="col-md-8"><h1>Kişiler</h1></div>
-<div class="col-md-4 buttons"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#ekle">Yeni Ekle</button></div>
+<div class="col-md-8"><h1><?php if($pgid!=0) print person_group_item_pull($pgid,'name')->name.' - '; ?> Kişiler </h1></div>
+<div class="col-md-4 buttons"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#ekle">Yeni Ekle</button> <button onclick="sil();" type="button" class="btn btn-danger">Sil</button></div>
 </div>
 <div class="row">
 <div class="col-md-12">
@@ -61,6 +80,7 @@ $(function(){
 <table class="table" id="table">
 <thead>
 <tr>
+    <th><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);"></th>
 	<th>Ad</th>
 	<th>Soyad</th>
 	<th></th>
@@ -174,9 +194,16 @@ $(function(){
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12"  maxlength="50" data-lenght="50" >
                         <div class="form-group">
                             <label>Eğitim Seviyesi</label>
-                            <input type="text" class="form-control required" id="education">
+                            <select  class="form-control required" id="education">
+                                <option>Lütfen Eğitim Seviyesi seçiniz.</option>
+                                <option value="İlköğretim">İlköğretim</option>
+                                <option value="Lise">Lise</option>
+                                <option value="Ön Lisans">Ön Lisans</option>
+                                <option value="Lisans">Lisans</option>
+                                <option value="Yüksek Lisans">Yüksek Lisans</option>
+                            </select>
                             <div class="invalid-feedback">
-                                Lütfen Eğitim Seviyesi giriniz.
+                                Lütfen Eğitim Seviyesi seçiniz.
                             </div>
                         </div>
                     </div><!-- col -->
@@ -244,6 +271,25 @@ $(function(){
                         </div>
                     </div><!-- col -->
 				</div><!-- row -->
+
+              <div class="form-row">
+                  <div class="col col-lg-12 col-md-12 col-sm-12 col-12" >
+                      <div class="form-group">
+                          <label>Aile Tanımla</label>
+                          <select id="pgid"  class="form-control js-example-basic-single" style="width: 100%;">
+                              <?php if($pgid==0): ?>
+                              <option>-Lütfen Aile Seçiniz-</option>
+                              <?php endif; ?>
+                              <?php foreach($personGroups AS $personGroup): ?>
+                                  <option value="<?php print $personGroup['pgid']; ?>" ><?php print $personGroup['name']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
+                          <div class="invalid-feedback">
+                              Lütfen bir aile seçiniz.
+                          </div>
+                      </div>
+                  </div><!-- col -->
+              </div><!-- row -->
 				
 				
 				

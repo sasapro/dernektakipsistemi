@@ -143,9 +143,35 @@ success: function(e){
 	$("#ajaxList").append(e);
 },});
 }
-/* Liste İşlemleri Bitiş */ 
+/* Liste İşlemleri Bitiş */
 
 
+
+function ajaxListDelete(url,yUrl){
+var selected = Array();
+$(':checkbox:checked[name^=selected]').val(function() {
+selected.push(this.value);
+});
+var dataString = 'toplam='+ selected.length;
+if(selected.length==0){
+alert("Lütfen en az bir kayıt seçiniz!");
+}else{
+function dongu(value, index, ar){
+dataString += '&selected['+index+']='+ value;
+}
+selected.forEach(dongu);
+jQuery.ajax({
+type: 'POST',
+url: '<?php echo site_url(); ?>'+url,
+data: dataString,
+success: function(e){
+if(e==1){ ajaxList(yUrl); formAlert(1,'Silme işlemi Başarıyla Gerçekleştirildi.'); }
+else if(e==0){ formAlert(0,'HATA! Silme işlemi Başarısız...');
+}else{ alert(e); }
+},
+});
+}
+}
 
 
 

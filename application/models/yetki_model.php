@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class yetki_model extends CI_Model {
+class Yetki_model extends CI_Model {
 
 	function control($user,$password){
 		

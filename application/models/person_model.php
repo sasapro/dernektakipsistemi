@@ -1,20 +1,31 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class person_model extends CI_Model {
+class Person_model extends CI_Model {
 
 	function __construct(){
 		$this->load->database();
 	}
 	
 
-	function person_list()
+	function person_list($limit,$start)
 	{
 		$this->db->select('*');
 		$this->db->from('person');
 		$this->db->order_by("insert_date", "desc");
+		$this->db->limit($limit, $start);
 		$veri = $this->db->get();
 		return $veri->result_array();
 	}
+
+    function person_list_filter($pgid)
+    {
+        $this->db->select('*');
+        $this->db->from('person');
+        $this->db->where('pgid', $pgid);
+        $this->db->order_by("insert_date", "desc");
+        $veri = $this->db->get();
+        return $veri->result_array();
+    }
 	
 	function person_phone_list($pid)
 	{
@@ -45,6 +56,26 @@ class person_model extends CI_Model {
 		$veri = $this->db->get();
 		return $veri->result_array();
 	}
+	
+	function person_group_list($limit,$start)
+	{
+		$this->db->select('*');
+		$this->db->from('person_group');
+		$this->db->order_by("insert_date", "desc");
+		if($limit!=0)
+		    $this->db->limit($limit, $start);
+		$veri = $this->db->get();
+		return $veri->result_array();
+	}
+
+    function person_group_list_filter($pgid)
+    {
+        $this->db->select('*');
+        $this->db->from('person_group');
+        $this->db->where('pgid', $pgid);
+        $veri = $this->db->get();
+        return $veri->result_array();
+    }
 	
 	function person_item($id)
 	{
@@ -81,6 +112,24 @@ class person_model extends CI_Model {
 		$veri = $this->db->get();
 		return $veri->row();
 	}
+
+    function person_group_item($id)
+    {
+        $this->db->select('*');
+        $this->db->from('person_group');
+        $this->db->where('pgid',$id);
+        $veri = $this->db->get();
+        return $veri->row();
+    }
+
+    function person_group_item_pull($id, $column)
+    {
+        $this->db->select($column);
+        $this->db->from('person_group');
+        $this->db->where('pgid',$id);
+        $veri = $this->db->get();
+        return $veri->row();
+    }
 	
 	function personInsert($values)
 	{
@@ -102,6 +151,7 @@ class person_model extends CI_Model {
 		$body_size = $this->db->escape_str($values[12]);
 		$height = $this->db->escape_str($values[13]);
 		$weight = $this->db->escape_str($values[14]);
+        $pgid = $this->db->escape_str($values[15]);
 		
 		$now = date('Y-m-d H:i:s');
 		
@@ -116,6 +166,7 @@ class person_model extends CI_Model {
 						'birthdate'    => $birthdate,
 						'job'    => $job,
 						'education'    => $education,
+                        'pgid'    => $pgid,
 						'insert_date' => $now
 					 );
 					 
@@ -187,6 +238,7 @@ class person_model extends CI_Model {
 		$birthdate = $this->db->escape_str($values[7]);
 		$job = $this->db->escape_str($values[8]);
 		$education = $this->db->escape_str($values[9]);
+        $pgid = $this->db->escape_str($values[10]);
 		
 		$now = date('Y-m-d H:i:s');
 		
@@ -201,6 +253,7 @@ class person_model extends CI_Model {
 						'birthdate'    => $birthdate,
 						'job'    => $job,
 						'education'    => $education,
+                          'pgid'    => $pgid,
 						'insert_date' => $now
 					 );
 					 
@@ -370,8 +423,81 @@ class person_model extends CI_Model {
 			return FALSE;
 		endif;
 	}
-	
-	
-	
-	
+
+
+    function personGroupInsert($values)
+    {
+        $name = $this->db->escape_str($values[0]);
+        $oksuz = $this->db->escape_str($values[1]);
+        $yetim = $this->db->escape_str($values[2]);
+
+        $now = date('Y-m-d H:i:s');
+
+
+        $data = array(
+            'name'  => $name,
+            'oksuz'  => $oksuz,
+            'yetim'    => $yetim,
+            'insert_date' => $now
+        );
+
+        $insert = $this->db->insert('person_group',$data);
+
+        if($insert):
+            return TRUE;
+        else:
+            return FALSE;
+        endif;
+    }
+
+    function personGroupUpdate($values)
+    {
+        $pgid = $this->db->escape_str($values[0]);
+        $name = $this->db->escape_str($values[1]);
+        $oksuz = $this->db->escape_str($values[2]);
+        $yetim = $this->db->escape_str($values[3]);
+
+
+        $data = array(
+            'name'  => $name,
+            'oksuz'  => $oksuz,
+            'yetim'    => $yetim
+        );
+        $this->db->where('pgid',$pgid);
+        $update = $this->db->update('person_group',$data);
+
+        if($update):
+            return TRUE;
+        else:
+            return FALSE;
+        endif;
+    }
+
+    function person_delete($s)
+    {
+        foreach($s AS $id)
+        {
+            $tablolar = array('person','dts_person_address','dts_person_measures','dts_person_phone');
+            $this->db->where('pid', $id);
+            $this->db->delete($tablolar);
+        }
+        return TRUE;
+    }
+
+
+    function person_group_delete($s)
+    {
+        foreach($s AS $id)
+        {
+            $tablolar = array('person_group');
+            $this->db->where('pgid', $id);
+            $this->db->delete($tablolar);
+        }
+        return TRUE;
+    }
+
+
+
+
+
 }

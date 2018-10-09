@@ -11,14 +11,19 @@ $(function(){
 			ajaxListAppend(count,'kisi/liste');
                      count++;
                   }
-          }); 	
+          });
+
+    $('#birthdate').datepicker({
+        firstDay: 1,
+        format: 'yyyy-mm-dd',
+
+    });
+
    });
    
    
     function formSend(){
-        var control = formControl();
 
-        if(control){
             var nationality = document.getElementById("nationality").value;
             var tc = document.getElementById("tc").value;
             var association_number = document.getElementById("association_number").value;
@@ -28,8 +33,9 @@ $(function(){
             var birthdate = document.getElementById("birthdate").value;
 			 var job = document.getElementById("job").value;
             var education = document.getElementById("education").value;
+            var pgid = document.getElementById("pgid").value;
 
-            var dataString = 'pid=' + <?php print $person->pid; ?> + '&nationality='+ nationality + '&tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&education=' + education;
+            var dataString = 'pid=' + <?php print $person->pid; ?> + '&nationality='+ nationality + '&tc=' + tc + '&association_number=' + association_number + '&passport_number=' + passport_number + '&name=' + name + '&surname=' + surname + '&birthdate=' + birthdate + '&job=' + job + '&education=' + education + '&pgid=' + pgid;
 			
             jQuery.ajax({
                 type: 'POST',
@@ -42,8 +48,6 @@ $(function(){
 						alert("İşlem gerçekleştirilemedi. Lütfen sistem yöneticisi ile görüşünüz.");
                 },
             });
-
-        }
 
     }
 	
@@ -269,6 +273,10 @@ $(function(){
                             <label>Doğum Tarihi</label>
                             <span><?php print $person->birthdate; ?></span>
                     </div><!-- col -->
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12"  maxlength="50" data-lenght="50" >
+                        <label>Aile</label>
+                        <span><?php print @person_group_item_pull($person->pgid,'name')->name; ?></span>
+                    </div><!-- col -->
 				</div><!-- row -->
   
 </div><!-- card body -->
@@ -470,9 +478,16 @@ $(function(){
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12"  maxlength="50" data-lenght="50" >
                         <div class="form-group">
                             <label>Eğitim Seviyesi</label>
-                            <input type="text" class="form-control required"  value="<?php print $person->education; ?>"  id="education">
+                            <select  class="form-control required" id="education">
+                                <option>Lütfen Eğitim Seviyesi seçiniz.</option>
+                                <option value="İlköğretim" <?php if($person->education=="İlköğretim") print "selected"; ?> >İlköğretim</option>
+                                <option value="Lise" <?php if($person->education=="Lise") print "selected"; ?> >Lise</option>
+                                <option value="Ön Lisans"  <?php if($person->education=="Ön Lisans") print "selected"; ?> >Ön Lisans</option>
+                                <option value="Lisans"  <?php if($person->education=="Lisans") print "selected"; ?> >Lisans</option>
+                                <option value="Yüksek Lisans"  <?php if($person->education=="Yüksek Lisans") print "selected"; ?> >Yüksek Lisans</option>
+                            </select>
                             <div class="invalid-feedback">
-                                Lütfen Eğitim Seviyesi giriniz.
+                                Lütfen Eğitim Seviyesi seçiniz.
                             </div>
                         </div>
                     </div><!-- col -->
@@ -484,6 +499,22 @@ $(function(){
                             <input type="text" class="form-control required" value="<?php print $person->birthdate; ?>" id="birthdate">
                             <div class="invalid-feedback">
                                 Lütfen doğum tarihi giriniz.
+                            </div>
+                        </div>
+                    </div><!-- col -->
+
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12" >
+                        <div class="form-group">
+                            <label>Aile Tanımla</label>
+                            <select id="pgid"  class="form-control js-example-basic-single" style="width: 100%;">
+                                <option>-Lütfen Aile Seçiniz-</option>
+                                <?php foreach($personGroups AS $personGroup): ?>
+                                <option value="<?php print $personGroup['pgid']; ?>" <?php if($person->pgid==$personGroup['pgid']) print "selected"; ?>><?php print $personGroup['name']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <div class="invalid-feedback">
+                                Lütfen bir aile seçiniz.
                             </div>
                         </div>
                     </div><!-- col -->

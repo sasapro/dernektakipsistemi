@@ -1,27 +1,43 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class kisi extends CI_Controller {
+class Kisi extends CI_Controller {
 
 
 	 public function __construct()
        {
 			parent::__construct();
 			$kontrol = $this->session->userdata('logged_in');
+           $rid = $this->session->userdata('rid');
 			if($kontrol == false){ redirect('/giris', 'location'); }
+            if($rid!=1 and $rid!=2){  exit("Bu Alana erişim yetkiniz bulunmamaktadır."); }
 	   }
-	
-	public function index()
+
+
+    public function index()
 	{
+	    if(@$_GET['aile'])
+	     $data['pgid'] = @$_GET['aile'];
+	    else
+         $data['pgid'] = 0;
+
 		$this->load->view('header');
-		$this->load->view('kisi/index');
+        $this->load->model('person_model');
+        if($data['pgid']==0)
+            $data['personGroups'] = $this->person_model->person_group_list(0,0);
+        else
+            $data['personGroups'] = $this->person_model->person_group_list_filter($data['pgid']);
+		$this->load->view('kisi/index', $data);
 		$this->load->view('footer');
 	}
 	
-	public function liste($s)
+	public function liste($pgid,$s)
 	{
-		
+        $start = 30 * ($s-1);
 		$this->load->model('person_model');
-		$data['persons'] = $this->person_model->person_list();
+		if($pgid==0)
+		    $data['persons'] = $this->person_model->person_list(30,$start);
+		else
+            $data['persons'] = $this->person_model->person_list_filter($pgid);
 		$this->load->view('kisi/liste', $data);
 		
 		
@@ -35,6 +51,7 @@ class kisi extends CI_Controller {
 		$data['personPhones'] = $this->person_model->person_phone_list($id);
 		$data['personAddresses'] = $this->person_model->person_address_list($id);
 		$data['personMeasureses'] = $this->person_model->person_measures_list($id);
+        $data['personGroups'] = $this->person_model->person_group_list(0,0);
 		$this->load->view('kisi/detay', $data);
 		$this->load->view('footer');
 	}
@@ -57,8 +74,9 @@ class kisi extends CI_Controller {
 		$body_size = $this->input->post('body_size',TRUE);
 		$height = $this->input->post('height',TRUE);
 		$weight = $this->input->post('weight',TRUE);
+        $pgid = $this->input->post('pgid',TRUE);
 		
-		$values = array($nationality,$tc,$association_number,$passport_number,$name,$surname,$birthdate,$job,$education,$phone,$address,$shoe_size,$body_size,$height,$weight);
+		$values = array($nationality,$tc,$association_number,$passport_number,$name,$surname,$birthdate,$job,$education,$phone,$address,$shoe_size,$body_size,$height,$weight,$pgid);
 		$this->load->model('person_model');
 		$sonuc = $this->person_model->personInsert($values);
 		
@@ -81,8 +99,9 @@ class kisi extends CI_Controller {
 		$birthdate = $this->input->post('birthdate',TRUE);
 		$job = $this->input->post('job',TRUE);
 		$education = $this->input->post('education',TRUE);
+        $pgid = $this->input->post('pgid',TRUE);
 		
-		$values = array($pid,$nationality,$tc,$association_number,$passport_number,$name,$surname,$birthdate,$job,$education);
+		$values = array($pid,$nationality,$tc,$association_number,$passport_number,$name,$surname,$birthdate,$job,$education,$pgid);
 		$this->load->model('person_model');
 		$sonuc = $this->person_model->personUpdate($values);
 		
@@ -319,6 +338,41 @@ class kisi extends CI_Controller {
 			</form>';
 			
 	}
+
+    function aileJson(){
+        print '{
+  "results": [
+    {
+      "id": 1,
+      "text": "Option 1"
+    },
+    {
+      "id": 2,
+      "text": "Option 2"
+    }
+  ],
+  "pagination": {
+    "more": true
+  }
+}';
+    }
+
+
+    public function sil()
+    {
+        if(!$_POST){ exit("Bu sayfaya ulaşım yetkiniz bulunmuyor!"); }
+        $deleteList  = $this->input->post('selected',TRUE);
+
+        $this->load->model('person_model');
+        $result = $this->person_model->person_delete($deleteList);
+
+        if($result)
+            echo 1;
+        else
+            echo 0;
+
+
+    }
 		
 
 	
