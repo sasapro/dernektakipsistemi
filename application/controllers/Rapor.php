@@ -34,7 +34,7 @@ class Rapor extends CI_Controller {
 
 		$this->load->view('header');
         $this->load->model('report_model');
-        $data['reports'] = $this->report_model->list($values);
+        $data['reports'] = $this->report_model->basic_list($values);
 		$this->load->view('rapor/index',$data);
 		$this->load->view('footer');
 	}
@@ -43,7 +43,7 @@ class Rapor extends CI_Controller {
 	{
         $start = 30 * ($s-1);
 		$this->load->model('report_model');
-         $data['reports'] = $this->report_model->list(30,$start);
+         $data['reports'] = $this->report_model->basic_list(30,$start);
 
 		$this->load->view('rapor/liste', $data);
 	}

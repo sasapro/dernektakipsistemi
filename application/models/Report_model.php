@@ -7,7 +7,7 @@ class Report_model extends CI_Model {
 	}
 
 
-    function list($values)
+    function basic_list($values)
     {
 
         $name = $this->db->escape_str($values[0]);

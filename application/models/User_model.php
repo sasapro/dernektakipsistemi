@@ -7,7 +7,7 @@ class User_model extends CI_Model {
 	}
 	
 
-	function list($limit,$start)
+	function basic_list($limit,$start)
 	{
 		$this->db->select('*');
 		$this->db->from('user');

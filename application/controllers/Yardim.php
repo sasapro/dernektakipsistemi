@@ -37,7 +37,7 @@ class Yardim extends CI_Controller {
         $start = 30 * ($s-1);
 		$this->load->model('donation_model');
         if($pgid==0)
-		    $data['donations'] = $this->donation_model->list(30,$start);
+		    $data['donations'] = $this->donation_model->basic_list(30,$start);
         else
             $data['donations'] = $this->donation_model->list_filter($pgid);
 		$this->load->view('yardim/liste', $data);

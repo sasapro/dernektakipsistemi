@@ -25,7 +25,7 @@ class User extends CI_Controller {
 	{
         $start = 30 * ($s-1);
 		$this->load->model('user_model');
-		$data['users'] = $this->user_model->list(30,$start);
+		$data['users'] = $this->user_model->basic_list(30,$start);
 		$this->load->view('user/list', $data);
 	}
 
