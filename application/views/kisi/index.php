@@ -222,7 +222,7 @@ function sil()
 					<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Adres</label>
-							<textarea class="form-control required" id="address" maxlength="50" data-lenght="50"  ></textarea>
+							<textarea class="form-control required" id="address" ></textarea>
                             <div class="invalid-feedback">
                                 Lütfen Adres giriniz.
                             </div>
@@ -233,7 +233,7 @@ function sil()
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12"   >
                         <div class="form-group">
                             <label>Ayakkabı Numarası</label>
-                            <input type="text" class="form-control required" id="shoe_size" maxlength="2" data-lenght="2">
+                            <input type="text" class="form-control" id="shoe_size" maxlength="2">
                             <div class="invalid-feedback">
                                 Lütfen ayakkabı numarası giriniz.
                             </div>
@@ -242,7 +242,7 @@ function sil()
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Beden</label>
-                            <input type="text" class="form-control required" id="body_size"  maxlength="5" data-lenght="5" >
+                            <input type="text" class="form-control" id="body_size"  maxlength="5" >
 
                             <div class="invalid-feedback">
                                 Lütfen beden giriniz.
@@ -255,7 +255,7 @@ function sil()
                     <div class="col col-lg-6 col-md-12 col-sm-12 col-12" >
                         <div class="form-group">
                             <label>Boy</label>
-                            <input type="text" class="form-control required" id="height" maxlength="3" data-lenght="3" >
+                            <input type="text" class="form-control" id="height" maxlength="3"  >
                             <div class="invalid-feedback">
                                 Lütfen boy giriniz.
                             </div>
@@ -264,7 +264,7 @@ function sil()
 					<div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Kilo</label>
-                            <input type="text" class="form-control required" id="weight"  maxlength="3" data-lenght="3" >
+                            <input type="text" class="form-control" id="weight"  maxlength="3"  >
                             <div class="invalid-feedback">
                                 Lütfen kilo giriniz.
                             </div>
